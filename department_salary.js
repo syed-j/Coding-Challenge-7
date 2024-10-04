@@ -49,3 +49,25 @@ const company = {
         ]
     }
 };
+
+// Step 2: Create recursive function to calculate department salary
+function calculateDepartmentSalary(department) {
+    let totalSalary = 0;
+    
+    // Loop through each employee in the department
+    department.employees.forEach(employee => {
+        // Add the current employee's salary to totalSalary
+        totalSalary += employee.salary;
+
+        // If the employee has subordinates, recursively add their salaries too
+        if (employee.subordinates.length > 0) {
+            employee.subordinates.forEach(subordinate => {
+                // Recursively call the function for each subordinate
+                totalSalary += calculateEmployeeSalary(subordinate);
+            });
+        }
+    });
+
+    return totalSalary;
+}
+
