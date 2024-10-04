@@ -71,3 +71,22 @@ function calculateDepartmentSalary(department) {
     return totalSalary;
 }
 
+// Step 3: Calculate total salary for all departments in the company
+function calculateCompanySalary(company) {
+    // Initialize totalSalary to 0 for the entire company
+    let totalSalary = 0;
+
+    // Iterate over each department in the company object
+    Object.keys(company).forEach(departmentKey => {
+        const department = company[departmentKey];
+        // Add the salary of each department (including subordinates) to totalSalary
+        totalSalary += calculateDepartmentSalary(department);
+    });
+
+    // Return the total salary for the entire company
+    return totalSalary;
+}
+
+// Example usage
+const totalCompanySalary = calculateCompanySalary(company);
+console.log(`Total company salary expenditure: $${totalCompanySalary}`);
